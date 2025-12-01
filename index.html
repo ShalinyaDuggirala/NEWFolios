@@ -1,9 +1,53 @@
-Create a simple homepage for my portfolio.
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Hi — I'm Shalinya</title>
+  <style>
+    body {
+      font-family: system-ui, Arial, sans-serif;
+      margin: 0;
+      background: #fafafa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .card {
+      background: #fff;
+      padding: 32px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      max-width: 400px;
+      text-align: center;
+    }
+    h1 { margin: 0 0 10px; }
+    p { color: #555; margin-bottom: 20px; }
+    a.button {
+      background: #111;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    a.small {
+      display: block;
+      margin-top: 10px;
+      color: #777;
+      text-decoration: none;
+      font-size: 14px;
+    }
+  </style>
+</head>
 
-- Title: "Hi — I'm Shalinya"
-- Subtitle: "Product & UI designer. I craft elegant interfaces and fast prototypes."
-- Portfolio link: https://shalinyaduggirala.framer.website/
-- Button text: "Open my portfolio"
-- Theme: minimal, soft shadows, rounded corners, centered card, mobile-responsive
-- Include a small "View source" link to the repo: https://github.com/ShalinyaDuggirala/MyPortfolio
-- Output: index.html (and optional styles.css). Keep HTML clean and self-contained.
+<body>
+  <div class="card">
+    <h1>Hi — I'm Shalinya</h1>
+    <p>Product & UI designer. I craft elegant interfaces and fast prototypes.</p>
+    <a class="button" href="https://shalinyaduggirala.framer.website" target="_blank">Open my portfolio</a>
+    <a class="small" href="https://github.com/ShalinyaDuggirala/MyPortfolio" target="_blank">View source on GitHub</a>
+  </div>
+</body>
+</html>
