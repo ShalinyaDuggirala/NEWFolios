@@ -1,145 +1,461 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Shalinya Duggirala — Portfolio</title>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<style>
-  /* ---- Variables ---- */
-  :root{
-    --bg: #fbfbfd;
-    --panel: #ffffff;
-    --accent: #0b63ff;       /* change for other palettes */
-    --accent-2: #0847c2;
-    --muted: #5e6570;
-    --maxw: 1120px;
-    --gap: 28px;
-    --radius: 14px;
-  }
-  /* ---- Reset ---- */
-  *{box-sizing:border-box}
-  html,body{height:100%;margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;color:#0b1726}
-  body{background:linear-gradient(180deg,#fcfdff 0%, #fbfbfd 100%);-webkit-font-smoothing:antialiased;padding:36px;display:flex;justify-content:center}
-  a{color:inherit}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bento Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #121214;
+            --card-bg-dark: #1c1c1f;
+            --card-bg-blue: #3b5bdb;
+            --accent-green: #2ecc71;
+            --text-main: #ffffff;
+            --text-muted: #8b8b93;
+            --border-radius: 20px;
+            --btn-shadow: 0px 4px 0px #00000040;
+            --gap: 20px;
+        }
 
-  /* ---- Layout ---- */
-  .stage{width:100%;max-width:var(--maxw);display:grid;grid-template-columns:1fr 480px;gap:var(--gap);align-items:center}
-  @media (max-width:980px){ .stage{grid-template-columns:1fr; padding:0 18px} }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-  /* ---- Left hero ---- */
-  header.hero{padding:36px;border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,0.95),rgba(255,255,255,0.88));box-shadow:0 24px 60px rgba(12,20,40,0.06);position:relative}
-  nav.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
-  .brand{font-weight:800;letter-spacing:-0.02em}
-  .navlinks{display:flex;gap:12px;align-items:center}
-  .navlinks a{font-size:14px;color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:10px}
-  .navlinks a.cta{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white;font-weight:700}
-  h1.title{font-size:56px;line-height:1.02;margin:0 0 12px}
-  p.lead{margin:0 0 20px;color:var(--muted);max-width:55ch;font-size:18px}
-  .actions{display:flex;gap:14px;align-items:center}
-  .btn{padding:12px 18px;border-radius:12px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:10px;cursor:pointer}
-  .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;box-shadow:0 10px 34px rgba(11,60,255,0.12)}
-  .btn.ghost{background:transparent;border:1px solid rgba(10,20,40,0.06);color:var(--muted)}
+        body {
+            background-color: var(--bg-color);
+            background-image: radial-gradient(#2a2a2e 1px, transparent 1px);
+            background-size: 24px 24px;
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
 
-  /* little animated underline for links */
-  .link-underline{position:relative;display:inline-block}
-  .link-underline::after{content:"";position:absolute;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent-2));bottom:-4px;transform-origin:left;transform:scaleX(0);transition:transform .35s ease}
-  .link-underline:hover::after{transform:scaleX(1)}
+        /* --- Main Grid Layout --- */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 320px 1fr 300px;
+            grid-template-rows: auto auto;
+            gap: var(--gap);
+            max-width: 1200px;
+            width: 100%;
+        }
 
-  /* ---- Right visual panel ---- */
-  aside.visual{position:relative;border-radius:16px;padding:20px;background:linear-gradient(180deg,#ffffff, #fbfbff);box-shadow:0 28px 70px rgba(8,18,40,0.06);height:520px;overflow:hidden;display:flex;flex-direction:column}
-  .visual .mock{flex:1;border-radius:12px;background:linear-gradient(135deg,#f7fbff,#eef6ff);display:flex;flex-direction:column;gap:12px;padding:16px;align-items:flex-start}
-  .mock .top{display:flex;gap:8px;align-items:center}
-  .dot{width:10px;height:10px;border-radius:50%;background:var(--accent)}
-  .mock .title{font-weight:700;color:var(--accent-2)}
-  .mock .preview{flex:1;width:100%;border-radius:10px;background:linear-gradient(135deg,#fff,#f3fbff);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent-2)}
-  .floating{position:absolute;right:-60px;top:-60px;width:320px;height:320px;border-radius:40%;filter:blur(28px);opacity:0.9;background:linear-gradient(135deg, rgba(11,99,255,0.14), rgba(11,63,255,0.06));transform:rotate(12deg)}
+        /* --- Generic Card Styles --- */
+        .card {
+            background: var(--card-bg-dark);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
 
-  /* little project list under mock */
-  .list{margin-top:12px;display:flex;flex-direction:column;gap:8px}
-  .list a{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:10px;text-decoration:none;color:var(--muted);background:linear-gradient(180deg,transparent, rgba(0,0,0,0.01))}
+        /* --- LEFT COLUMN: Profile --- */
+        .profile-card {
+            grid-row: span 2;
+            background-color: var(--card-bg-blue);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: white;
+            border: 2px solid #4c6ef5;
+        }
 
-  /* ---- Grid / Feature row under hero (optional) ---- */
-  .features{display:flex;gap:16px;margin-top:22px;flex-wrap:wrap}
-  .feature{background:linear-gradient(180deg,#fff,#fbfbff);padding:12px;border-radius:10px;box-shadow:0 10px 30px rgba(8,18,40,0.04);min-width:140px;text-align:center}
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
 
-  /* ---- Footer small ---- */
-  footer.small{margin-top:24px;color:var(--muted);font-size:13px;text-align:left}
+        .avatar-container {
+            background: #222;
+            border-radius: 12px;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border: 4px solid rgba(0,0,0,0.2);
+        }
+        
+        .avatar-placeholder {
+            font-size: 5rem;
+            opacity: 0.8;
+        }
 
-  /* ---- Responsive tweaks ---- */
-  @media (max-width:980px){
-    h1.title{font-size:36px}
-    aside.visual{height:360px;order:2}
-  }
+        .btn-contact {
+            background-color: var(--accent-green);
+            color: #0b3d28;
+            border: none;
+            padding: 15px;
+            border-radius: 12px;
+            font-weight: 800;
+            width: 100%;
+            cursor: pointer;
+            box-shadow: 0px 4px 0px #0e8c52;
+            transition: transform 0.1s;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
 
-  /* ---- Subtle entrance animation ---- */
-  .hero, .visual{opacity:0;transform:translateY(8px);animation:enter .6s ease forwards}
-  .visual{animation-delay:.12s}
-  @keyframes enter{to{opacity:1;transform:none}}
-</style>
+        .btn-contact:active {
+            transform: translateY(4px);
+            box-shadow: none;
+        }
+
+        .settings-area h4 {
+            opacity: 0.6;
+            margin-bottom: 15px;
+            font-size: 0.8rem;
+        }
+
+        .toggle-row {
+            background: rgba(0,0,0,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .toggle-switch {
+            width: 40px;
+            height: 22px;
+            background: #6c85f7;
+            border-radius: 20px;
+            position: relative;
+        }
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            right: 3px;
+            top: 3px;
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .toggle-text {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        /* --- MIDDLE COLUMN --- */
+        .socials-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: var(--gap);
+        }
+
+        .social-btn {
+            background: var(--card-bg-dark);
+            height: 100px;
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            border: 2px solid #2a2a2e;
+            transition: all 0.2s;
+            cursor: pointer;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .social-btn:hover {
+            border-color: var(--text-muted);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .circle-inset {
+            background: #151517;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 2px 2px 5px rgba(0,0,0,0.8), 
+                        1px 1px 0px rgba(255,255,255,0.1);
+        }
+
+        .portfolio-card {
+            background: var(--card-bg-dark);
+            border-radius: var(--border-radius);
+            margin-top: var(--gap);
+            height: 300px; /* Adjust height */
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .portfolio-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .portfolio-header span {
+            font-weight: 700;
+            font-size: 0.8rem;
+            color: #ffaa40; /* matches icon color */
+            text-transform: uppercase;
+        }
+
+        .portfolio-preview {
+            flex-grow: 1;
+            background: #111;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #2a2a2e;
+        }
+        
+        .portfolio-preview h2 {
+            color: #333;
+            text-transform: uppercase;
+            font-size: 2rem;
+            text-align: center;
+            transform: rotate(-5deg);
+        }
+        
+        .arrow-nav {
+            display: flex;
+            gap: 10px;
+        }
+        .arrow-btn {
+            background: #2a2a2e;
+            border: none;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* --- RIGHT COLUMN --- */
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: var(--gap);
+        }
+
+        .side-projects-card {
+            background: var(--card-bg-dark);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .section-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #f1c40f;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .project-item {
+            background: #161618;
+            aspect-ratio: 1;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            border: 2px solid #2a2a2e;
+            position: relative;
+        }
+
+        /* Neon glow effects for icons */
+        .glow-orange { color: #e67e22; text-shadow: 0 0 10px #e67e22; }
+        .glow-purple { color: #9b59b6; text-shadow: 0 0 10px #9b59b6; }
+        .glow-pink { color: #e91e63; text-shadow: 0 0 10px #e91e63; }
+        .glow-cyan { color: #00bcd4; text-shadow: 0 0 10px #00bcd4; }
+
+        .audio-card {
+            background: #111;
+            border-radius: var(--border-radius);
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .speaker-grill {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 5px;
+        }
+        .dot {
+            width: 6px;
+            height: 6px;
+            background: #333;
+            border-radius: 50%;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 1024px) {
+            .bento-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .profile-card {
+                grid-column: span 2; /* Profile takes full top on tablets */
+                flex-direction: row;
+                align-items: center;
+                gap: 20px;
+            }
+            .avatar-container {
+                height: 120px;
+                width: 120px;
+                margin-bottom: 0;
+            }
+            .settings-area { display: none; } /* Hide settings on tablet to save space */
+        }
+
+        @media (max-width: 768px) {
+            .bento-grid {
+                display: flex;
+                flex-direction: column;
+            }
+            .profile-card {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .avatar-container {
+                width: 100%;
+                height: 200px;
+            }
+            .settings-area { display: block; }
+        }
+    </style>
 </head>
 <body>
-  <div class="stage" role="main">
-    <!-- LEFT: HERO -->
-    <header class="hero" aria-labelledby="main-title">
-      <nav class="top" aria-label="top navigation">
-        <div class="brand">Shalinya D.</div>
-        <div class="navlinks">
-          <a href="#work" class="link-underline">Work</a>
-          <a href="#about" class="link-underline">About</a>
-          <a class="cta btn primary" href="YOUR_PORTFOLIO_URL" target="_blank" rel="noopener">Open portfolio</a>
+
+    <div class="bento-grid">
+        
+        <div class="card profile-card">
+            <div>
+                <div class="profile-header">
+                    <i class="fa-solid fa-chart-simple"></i>
+                    <span>Your Name Here</span>
+                </div>
+                <div class="avatar-container">
+                    <i class="fa-solid fa-user-astronaut avatar-placeholder"></i> 
+                    </div>
+                <button class="btn-contact">Contact Me</button>
+            </div>
+
+            <div class="settings-area">
+                <h4>Face Customizer</h4>
+                <div class="toggle-row">
+                    <div class="toggle-switch"></div>
+                    <span class="toggle-text">GRAPHIC & WEBDESIGNER</span>
+                </div>
+                <div class="toggle-row">
+                    <div class="toggle-switch"></div>
+                    <span class="toggle-text">MOTION DESIGNER</span>
+                </div>
+            </div>
         </div>
-      </nav>
 
-      <h1 id="main-title" class="title">I design clear product experiences that feel human.</h1>
-      <p class="lead">Product & UI designer — motion, prototyping, and brand-driven interfaces. I make prototypes that communicate ideas quickly and beautifully.</p>
+        <div class="center-column">
+            <div class="socials-row">
+                <div class="social-btn">
+                    <div class="circle-inset"><i class="fa-brands fa-x-twitter"></i></div>
+                </div>
+                <div class="social-btn">
+                    <div class="circle-inset"><i class="fa-brands fa-linkedin-in"></i></div>
+                </div>
+                <div class="social-btn">
+                    <div class="circle-inset"><i class="fa-brands fa-dribbble"></i></div>
+                </div>
+            </div>
 
-      <div class="actions" role="group" aria-label="primary actions">
-        <a class="btn primary" href="YOUR_PORTFOLIO_URL" target="_blank">View portfolio ↗</a>
-        <a class="btn ghost" href="mailto:your@email">Contact</a>
-      </div>
-
-      <div class="features" aria-hidden="true">
-        <div class="feature"><strong>Prototype</strong><div style="color:var(--muted);font-size:13px">High-fidelity flows</div></div>
-        <div class="feature"><strong>Design System</strong><div style="color:var(--muted);font-size:13px">Reusable UI</div></div>
-        <div class="feature"><strong>Motion</strong><div style="color:var(--muted);font-size:13px">Delightful microinteractions</div></div>
-      </div>
-
-      <footer class="small">Based in Hyderabad • Shalinya Duggirala</footer>
-    </header>
-
-    <!-- RIGHT: VISUAL PANEL -->
-    <aside class="visual" aria-label="visual panel">
-      <div class="floating" aria-hidden="true"></div>
-      <div class="mock" aria-hidden="true">
-        <div class="top"><div class="dot"></div><div class="dot" style="background:#cfe9ff"></div></div>
-        <div class="title">Selected work preview</div>
-        <div class="preview">Open a project →</div>
-        <div class="list">
-          <a href="YOUR_PORTFOLIO_URL" target="_blank">ResQ — Emergency booking <span style="color:var(--muted);font-size:13px">UI / Prototype</span></a>
-          <a href="YOUR_PORTFOLIO_URL" target="_blank">DROPBY — Neighborhood pickups <span style="color:var(--muted);font-size:13px">Case study</span></a>
-          <a href="YOUR_PORTFOLIO_URL" target="_blank">Chaika — Brand & App <span style="color:var(--muted);font-size:13px">Product</span></a>
+            <div class="portfolio-card">
+                <div class="portfolio-header">
+                    <span><i class="fa-solid fa-briefcase"></i> Portfolio</span>
+                    <div class="arrow-nav">
+                        <button class="arrow-btn"><i class="fa-solid fa-arrow-left"></i></button>
+                        <button class="arrow-btn"><i class="fa-solid fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                <div class="portfolio-preview">
+                    <h2>Browse<br>My Portfolio</h2>
+                    <i class="fa-solid fa-arrow-pointer" style="position: absolute; bottom: 20px; right: 20px; font-size: 1.5rem; opacity: 0.5;"></i>
+                </div>
+            </div>
         </div>
-      </div>
-    </aside>
-  </div>
 
-<script>
-  // small: enable quick hero text edit via console:
-  window.setHero = ({title, sub})=>{
-    if(title) document.getElementById('main-title').textContent = title;
-    if(sub) document.querySelector('.lead').textContent = sub;
-  };
+        <div class="right-column">
+            <div class="side-projects-card">
+                <div class="section-title">
+                    <i class="fa-solid fa-mug-hot"></i> Side-Projects
+                </div>
+                <div class="projects-grid">
+                    <div class="project-item">
+                        <div class="circle-inset"><i class="fa-solid fa-fire glow-orange"></i></div>
+                    </div>
+                    <div class="project-item">
+                        <div class="circle-inset"><i class="fa-solid fa-comments glow-purple"></i></div>
+                    </div>
+                    <div class="project-item">
+                        <div class="circle-inset"><i class="fa-solid fa-infinity glow-pink"></i></div>
+                    </div>
+                    <div class="project-item">
+                        <div class="circle-inset"><i class="fa-solid fa-bolt glow-cyan"></i></div>
+                    </div>
+                </div>
+            </div>
 
-  // optional: smooth scroll for nav anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(a=>{
-    a.addEventListener('click', e=>{
-      e.preventDefault();
-      const id = a.getAttribute('href').slice(1);
-      const el = document.getElementById(id);
-      if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
-    });
-  });
-</script>
+            <div class="audio-card">
+                <div class="speaker-grill">
+                    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                </div>
+                <div style="position: absolute; bottom: 10px; right: 10px;">
+                    <i class="fa-solid fa-plus-circle" style="color: #444;"></i>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
 </body>
 </html>
