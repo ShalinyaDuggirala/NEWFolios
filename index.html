@@ -3,257 +3,143 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Hi — I'm Shalinya • Portfolio</title>
+<title>Shalinya Duggirala — Portfolio</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <style>
+  /* ---- Variables ---- */
   :root{
-    --cream: #fff8ef;
-    --cream-2: #fff3e6;
-    --blue-1: #0b63ff;   /* main accent */
-    --blue-2: #0847c2;   /* dark accent */
-    --muted: #5b6470;
-    --card: #ffffff;
-    --glass: rgba(255,255,255,0.66);
-    --shadow: 0 12px 30px rgba(11,25,60,0.08);
+    --bg: #fbfbfd;
+    --panel: #ffffff;
+    --accent: #0b63ff;       /* change for other palettes */
+    --accent-2: #0847c2;
+    --muted: #5e6570;
+    --maxw: 1120px;
+    --gap: 28px;
     --radius: 14px;
-    --gap: 20px;
   }
+  /* ---- Reset ---- */
   *{box-sizing:border-box}
-  html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;color:#0b1726}
-  body{
-    background: linear-gradient(180deg,var(--cream) 0%, var(--cream-2) 100%);
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    padding:40px;
-    display:flex;
-    align-items:flex-start;
-    justify-content:center;
+  html,body{height:100%;margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial;color:#0b1726}
+  body{background:linear-gradient(180deg,#fcfdff 0%, #fbfbfd 100%);-webkit-font-smoothing:antialiased;padding:36px;display:flex;justify-content:center}
+  a{color:inherit}
+
+  /* ---- Layout ---- */
+  .stage{width:100%;max-width:var(--maxw);display:grid;grid-template-columns:1fr 480px;gap:var(--gap);align-items:center}
+  @media (max-width:980px){ .stage{grid-template-columns:1fr; padding:0 18px} }
+
+  /* ---- Left hero ---- */
+  header.hero{padding:36px;border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,0.95),rgba(255,255,255,0.88));box-shadow:0 24px 60px rgba(12,20,40,0.06);position:relative}
+  nav.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
+  .brand{font-weight:800;letter-spacing:-0.02em}
+  .navlinks{display:flex;gap:12px;align-items:center}
+  .navlinks a{font-size:14px;color:var(--muted);text-decoration:none;padding:8px 10px;border-radius:10px}
+  .navlinks a.cta{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:white;font-weight:700}
+  h1.title{font-size:56px;line-height:1.02;margin:0 0 12px}
+  p.lead{margin:0 0 20px;color:var(--muted);max-width:55ch;font-size:18px}
+  .actions{display:flex;gap:14px;align-items:center}
+  .btn{padding:12px 18px;border-radius:12px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:10px;cursor:pointer}
+  .btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#fff;box-shadow:0 10px 34px rgba(11,60,255,0.12)}
+  .btn.ghost{background:transparent;border:1px solid rgba(10,20,40,0.06);color:var(--muted)}
+
+  /* little animated underline for links */
+  .link-underline{position:relative;display:inline-block}
+  .link-underline::after{content:"";position:absolute;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent-2));bottom:-4px;transform-origin:left;transform:scaleX(0);transition:transform .35s ease}
+  .link-underline:hover::after{transform:scaleX(1)}
+
+  /* ---- Right visual panel ---- */
+  aside.visual{position:relative;border-radius:16px;padding:20px;background:linear-gradient(180deg,#ffffff, #fbfbff);box-shadow:0 28px 70px rgba(8,18,40,0.06);height:520px;overflow:hidden;display:flex;flex-direction:column}
+  .visual .mock{flex:1;border-radius:12px;background:linear-gradient(135deg,#f7fbff,#eef6ff);display:flex;flex-direction:column;gap:12px;padding:16px;align-items:flex-start}
+  .mock .top{display:flex;gap:8px;align-items:center}
+  .dot{width:10px;height:10px;border-radius:50%;background:var(--accent)}
+  .mock .title{font-weight:700;color:var(--accent-2)}
+  .mock .preview{flex:1;width:100%;border-radius:10px;background:linear-gradient(135deg,#fff,#f3fbff);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--accent-2)}
+  .floating{position:absolute;right:-60px;top:-60px;width:320px;height:320px;border-radius:40%;filter:blur(28px);opacity:0.9;background:linear-gradient(135deg, rgba(11,99,255,0.14), rgba(11,63,255,0.06));transform:rotate(12deg)}
+
+  /* little project list under mock */
+  .list{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+  .list a{display:flex;justify-content:space-between;align-items:center;padding:10px;border-radius:10px;text-decoration:none;color:var(--muted);background:linear-gradient(180deg,transparent, rgba(0,0,0,0.01))}
+
+  /* ---- Grid / Feature row under hero (optional) ---- */
+  .features{display:flex;gap:16px;margin-top:22px;flex-wrap:wrap}
+  .feature{background:linear-gradient(180deg,#fff,#fbfbff);padding:12px;border-radius:10px;box-shadow:0 10px 30px rgba(8,18,40,0.04);min-width:140px;text-align:center}
+
+  /* ---- Footer small ---- */
+  footer.small{margin-top:24px;color:var(--muted);font-size:13px;text-align:left}
+
+  /* ---- Responsive tweaks ---- */
+  @media (max-width:980px){
+    h1.title{font-size:36px}
+    aside.visual{height:360px;order:2}
   }
 
-  /* stage */
-  .wrap{max-width:1100px;width:100%;display:grid;grid-template-columns:1fr 380px;gap:36px;align-items:start}
-  @media (max-width:980px){ .wrap{grid-template-columns:1fr; padding:0 12px} }
-
-  /* HERO */
-  .hero{
-    background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.82));
-    border-radius:var(--radius);
-    padding:28px;
-    box-shadow:var(--shadow);
-    position:relative;
-    overflow:visible;
-  }
-  #hero-title{font-size:42px;line-height:1.02;margin:0 0 10px;font-weight:800;letter-spacing:-0.01em;color:var(--blue-2)}
-  #hero-sub{margin:0 0 20px;color:var(--muted);font-size:16px;max-width:62ch}
-  .hero .actions{display:flex;gap:12px;align-items:center}
-  .btn{
-    display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:12px;text-decoration:none;font-weight:700;cursor:pointer;border:none;
-    background:linear-gradient(90deg,var(--blue-1),var(--blue-2));color:#fff;box-shadow:0 8px 30px rgba(11,63,255,0.12);
-  }
-  .btn.ghost{background:transparent;color:var(--blue-2);border:1px solid rgba(11,63,255,0.08);font-weight:600;padding:10px 16px}
-  .note{margin-top:14px;color:var(--muted);font-size:13px}
-
-  /* GRID */
-  .grid-wrap{margin-top:18px}
-  .grid{
-    display:grid;
-    grid-template-columns:repeat(3, 1fr);
-    gap:var(--gap);
-  }
-  @media (max-width:980px){ .grid{grid-template-columns:repeat(2,1fr)} }
-  @media (max-width:520px){ .grid{grid-template-columns:1fr} }
-
-  .card{
-    background:var(--card);
-    border-radius:12px;
-    padding:16px;
-    box-shadow:0 8px 26px rgba(8,20,60,0.06);
-    cursor:pointer;
-    transform-origin:center;
-    transition:transform 280ms cubic-bezier(.2,.9,.2,1), box-shadow 280ms;
-    display:flex;flex-direction:column;gap:10px;
-  }
-  .card:focus{outline:4px solid rgba(11,99,255,0.12)}
-  .card:hover{transform:translateY(-8px) rotateX(6deg); box-shadow:0 24px 60px rgba(8,20,60,0.09)}
-  .thumb{
-    height:140px;border-radius:10px;background:linear-gradient(135deg,var(--blue-1),#9fb8ff);display:flex;align-items:end;padding:12px;color:white;font-weight:700;
-    box-shadow:inset 0 -10px 30px rgba(0,0,0,0.06);
-  }
-  .meta{display:flex;justify-content:space-between;align-items:center}
-  .title{font-size:15px;font-weight:700;color:#0b1726}
-  .tag{font-size:12px;color:var(--muted)}
-
-  /* RIGHT PANEL */
-  .panel{
-    position:sticky;top:36px;
-    background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.9));
-    border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);
-  }
-  .panel h3{margin:0 0 8px}
-  .small{color:var(--muted);font-size:14px}
-
-  /* decorative header accent */
-  .accent-row{display:flex;gap:10px;align-items:center;margin-bottom:12px}
-  .accent-dot{width:14px;height:14px;border-radius:4px;background:linear-gradient(180deg,var(--blue-1),var(--blue-2));box-shadow:0 6px 18px rgba(11,63,255,0.08)}
-
-  /* modal */
-  .modal-backdrop{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(6,10,20,0.48);z-index:60;padding:20px}
-  .modal{background:var(--card);max-width:820px;width:100%;border-radius:12px;padding:20px;box-shadow:0 30px 80px rgba(6,12,28,0.3)}
-  .modal .row{display:flex;gap:18px;align-items:flex-start}
-  .modal .preview{flex:1;background:linear-gradient(135deg,#f6fbff,#eef6ff);border-radius:8px;height:260px;display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--blue-2)}
-  .modal .info{width:320px}
-  .close-btn{background:transparent;border:1px solid rgba(11,63,255,0.08);padding:8px 12px;border-radius:10px;cursor:pointer}
-
-  /* small helpers */
-  .muted{color:var(--muted);font-size:13px}
-  footer{margin-top:24px;color:var(--muted);font-size:13px;text-align:center}
-
-  /* subtle entrance animation */
-  .hero, .panel, .grid .card{opacity:0;transform:translateY(12px);animation:enter 560ms ease forwards}
-  .hero{animation-delay:80ms}.panel{animation-delay:160ms}.grid .card{animation-delay:220ms}
+  /* ---- Subtle entrance animation ---- */
+  .hero, .visual{opacity:0;transform:translateY(8px);animation:enter .6s ease forwards}
+  .visual{animation-delay:.12s}
   @keyframes enter{to{opacity:1;transform:none}}
-
 </style>
 </head>
 <body>
-  <div class="wrap" role="main">
-    <!-- HERO + GRID column -->
-    <section class="hero" aria-labelledby="hero-title">
-      <!-- EDITABLE TEXT → change this -->
-      <h1 id="hero-title">Hi — I'm <span style="color:var(--blue-2)">Shalinya</span>.</h1>
-      <p id="hero-sub">Product & UI designer. I craft bold visuals, playful motion, and quick prototypes that tell stories.</p>
-      <!-- /editable -->
-
-      <div class="actions">
-        <a class="btn" href="https://shalinyaduggirala.framer.website/" target="_blank" rel="noopener">Open my portfolio ↗</a>
-        <button class="btn ghost" id="contactBtn">Contact</button>
-      </div>
-
-      <p class="note">Tip: click any project card to view a quick preview and open the full project in a new tab.</p>
-
-      <!-- Interactive grid -->
-      <div class="grid-wrap">
-        <div class="grid" id="projectsGrid" aria-live="polite">
-          <!-- Cards generated in JS -->
+  <div class="stage" role="main">
+    <!-- LEFT: HERO -->
+    <header class="hero" aria-labelledby="main-title">
+      <nav class="top" aria-label="top navigation">
+        <div class="brand">Shalinya D.</div>
+        <div class="navlinks">
+          <a href="#work" class="link-underline">Work</a>
+          <a href="#about" class="link-underline">About</a>
+          <a class="cta btn primary" href="YOUR_PORTFOLIO_URL" target="_blank" rel="noopener">Open portfolio</a>
         </div>
+      </nav>
+
+      <h1 id="main-title" class="title">I design clear product experiences that feel human.</h1>
+      <p class="lead">Product & UI designer — motion, prototyping, and brand-driven interfaces. I make prototypes that communicate ideas quickly and beautifully.</p>
+
+      <div class="actions" role="group" aria-label="primary actions">
+        <a class="btn primary" href="YOUR_PORTFOLIO_URL" target="_blank">View portfolio ↗</a>
+        <a class="btn ghost" href="mailto:your@email">Contact</a>
       </div>
 
-      <footer>Built with care • Shalinya Duggirala</footer>
-    </section>
+      <div class="features" aria-hidden="true">
+        <div class="feature"><strong>Prototype</strong><div style="color:var(--muted);font-size:13px">High-fidelity flows</div></div>
+        <div class="feature"><strong>Design System</strong><div style="color:var(--muted);font-size:13px">Reusable UI</div></div>
+        <div class="feature"><strong>Motion</strong><div style="color:var(--muted);font-size:13px">Delightful microinteractions</div></div>
+      </div>
 
-    <!-- RIGHT panel -->
-    <aside class="panel" aria-label="About & quick links">
-      <div class="accent-row">
-        <div class="accent-dot" aria-hidden="true"></div>
-        <div>
-          <h3 style="margin:0">Studio • Beaucoup-like</h3>
-          <p class="small muted">Blue & cream visuals • interactive grid • lightweight code</p>
+      <footer class="small">Based in Hyderabad • Shalinya Duggirala</footer>
+    </header>
+
+    <!-- RIGHT: VISUAL PANEL -->
+    <aside class="visual" aria-label="visual panel">
+      <div class="floating" aria-hidden="true"></div>
+      <div class="mock" aria-hidden="true">
+        <div class="top"><div class="dot"></div><div class="dot" style="background:#cfe9ff"></div></div>
+        <div class="title">Selected work preview</div>
+        <div class="preview">Open a project →</div>
+        <div class="list">
+          <a href="YOUR_PORTFOLIO_URL" target="_blank">ResQ — Emergency booking <span style="color:var(--muted);font-size:13px">UI / Prototype</span></a>
+          <a href="YOUR_PORTFOLIO_URL" target="_blank">DROPBY — Neighborhood pickups <span style="color:var(--muted);font-size:13px">Case study</span></a>
+          <a href="YOUR_PORTFOLIO_URL" target="_blank">Chaika — Brand & App <span style="color:var(--muted);font-size:13px">Product</span></a>
         </div>
-      </div>
-
-      <p class="small">Want this exact style? I can export a version with your logo, custom colors, or add animated micro-interactions. Tell me what to say in the hero and I’ll update it.</p>
-
-      <div style="margin-top:14px;display:flex;gap:8px">
-        <a class="btn ghost" href="https://github.com/ShalinyaDuggirala/NEWFolios" target="_blank">View source</a>
-        <a class="btn" href="https://shalinyaduggirala.framer.website/" target="_blank">My Framer portfolio</a>
       </div>
     </aside>
   </div>
 
-  <!-- modal -->
-  <div class="modal-backdrop" id="modal" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="modal" role="document">
-      <div style="display:flex;justify-content:flex-end"><button class="close-btn" id="closeModal">Close</button></div>
-      <div class="row">
-        <div class="preview" id="modalPreview">Preview</div>
-        <div class="info">
-          <h4 id="modalTitle">Project title</h4>
-          <p id="modalDesc" class="muted">Short description of the project goes here.</p>
-          <p style="margin-top:12px"><a id="modalLink" class="btn" href="#" target="_blank">Open project ↗</a></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
 <script>
-  // sample project data — update these with your real projects and links
-  const projects = [
-    { id:1, title:"Product Redesign • Tea App", tag:"UI / Product", color:"#ffd6b4", desc:"Warm, friendly UI for Chaika — booking & onboarding flows.", url:"https://shalinyaduggirala.framer.website/" },
-    { id:2, title:"ResQ — Emergency Booking", tag:"Prototyping", color:"#bfe0ff", desc:"One-step ambulance booking & live tracking prototype.", url:"https://shalinyaduggirala.framer.website/" },
-    { id:3, title:"DROPBY • Concept", tag:"Case study", color:"#f2d6ff", desc:"Neighborhood pickup scheduling app — UX + branding.", url:"https://shalinyaduggirala.framer.website/" },
-    { id:4, title:"Portfolio UI Refresh", tag:"Design System", color:"#d6f7ff", desc:"Mini redesign showing layout & component choices.", url:"https://shalinyaduggirala.framer.website/" },
-    { id:5, title:"Landing experiments", tag:"Motion", color:"#ffe6d1", desc:"Microinteractions and A/B hero experiments.", url:"https://shalinyaduggirala.framer.website/" },
-    { id:6, title:"Visual identity pack", tag:"Branding", color:"#e8f0ff", desc:"Color tokens, type, and imagery guidelines.", url:"https://shalinyaduggirala.framer.website/" },
-  ];
-
-  const grid = document.getElementById('projectsGrid');
-
-  function makeCard(p){
-    const el = document.createElement('button');
-    el.className = 'card';
-    el.type = 'button';
-    el.setAttribute('aria-label', `${p.title} — ${p.tag}`);
-    el.innerHTML = `
-      <div class="thumb" style="background: linear-gradient(135deg, ${p.color}, #fff6f0)">
-        <div style="padding:10px;">${p.title}</div>
-      </div>
-      <div class="meta">
-        <div class="title">${p.title}</div>
-        <div class="tag">${p.tag}</div>
-      </div>
-      <div class="muted">${p.desc}</div>
-    `;
-    // open modal on click
-    el.addEventListener('click', ()=> openModal(p));
-    // keyboard tilt / subtle 3D on pointer move
-    el.addEventListener('pointermove', e=>{
-      const rect = el.getBoundingClientRect();
-      const dx = (e.clientX - rect.left) / rect.width - 0.5;
-      const dy = (e.clientY - rect.top) / rect.height - 0.5;
-      el.style.transform = `translateY(-6px) rotateX(${(-dy*6)}deg) rotateY(${(dx*6)}deg)`;
-    });
-    el.addEventListener('pointerleave', ()=> el.style.transform = '');
-    return el;
-  }
-
-  // populate grid
-  projects.forEach(p => grid.appendChild(makeCard(p)));
-
-  // modal logic
-  const modal = document.getElementById('modal');
-  const modalTitle = document.getElementById('modalTitle');
-  const modalDesc = document.getElementById('modalDesc');
-  const modalLink = document.getElementById('modalLink');
-  const modalPreview = document.getElementById('modalPreview');
-  const closeModalBtn = document.getElementById('closeModal');
-
-  function openModal(p){
-    modalTitle.textContent = p.title;
-    modalDesc.textContent = p.desc;
-    modalLink.href = p.url;
-    modalPreview.textContent = p.tag;
-    modal.style.display = 'flex';
-    modal.setAttribute('aria-hidden','false');
-    // trap focus to close button
-    closeModalBtn.focus();
-  }
-  function closeModal(){
-    modal.style.display = 'none';
-    modal.setAttribute('aria-hidden','true');
-  }
-  closeModalBtn.addEventListener('click', closeModal);
-  modal.addEventListener('click', (e)=>{ if(e.target===modal) closeModal(); });
-  window.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeModal(); });
-
-  // contact quick action
-  document.getElementById('contactBtn').addEventListener('click', ()=>{
-    window.location.href = 'mailto:shalinya@example.com?subject=Hi%20Shalinya';
-  });
-
-  // small: enable changing hero text via developer console if you want quick edits
+  // small: enable quick hero text edit via console:
   window.setHero = ({title, sub})=>{
-    if(title) document.getElementById('hero-title').innerHTML = title;
-    if(sub) document.getElementById('hero-sub').textContent = sub;
+    if(title) document.getElementById('main-title').textContent = title;
+    if(sub) document.querySelector('.lead').textContent = sub;
   };
+
+  // optional: smooth scroll for nav anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{
+      e.preventDefault();
+      const id = a.getAttribute('href').slice(1);
+      const el = document.getElementById(id);
+      if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  });
 </script>
 </body>
 </html>
